@@ -29,7 +29,7 @@ describe Work do
   end
 
   describe "relationships" do
-    it "can have many users" do
+    it "can get votes from many users" do
       # Arrange
       new_work.save
       new_user = User.create(name: "Pedro", joined: Date.today)

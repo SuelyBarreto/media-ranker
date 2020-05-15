@@ -8,7 +8,6 @@ class Work < ApplicationRecord
   validates :title, presence: true
 
   def votes
-
     return self.users.count
   end
 end

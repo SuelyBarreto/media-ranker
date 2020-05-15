@@ -3,7 +3,12 @@ class Work < ApplicationRecord
 
   validates :category, inclusion: {
     in: %w(album book movie),
-    message: "%{value} is not a valid category"
+    message: "invalid category"
   }
   validates :title, presence: true
+
+  def votes
+
+    return self.users.count
+  end
 end

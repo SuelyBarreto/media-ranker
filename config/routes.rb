@@ -2,5 +2,5 @@ Rails.application.routes.draw do
   get 'homepages/index'
   root 'homepages#index'
 
-  resources :drivers
+  resources :works
 end

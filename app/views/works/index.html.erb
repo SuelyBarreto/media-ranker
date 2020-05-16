@@ -1,2 +1,80 @@
-<h1>Works#index</h1>
-<p>Find me in app/views/works/index.html.erb</p>
+<h2>List of Works</h2>
+
+<section class="media-table">
+  <h4>Albums</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th width=80>Votes</th>
+        <th>Title</th>
+        <th>Created By</th>
+        <th width=100>Published</th>
+        <th width=100>Upvote</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @works_albums.each do |work|  %>
+        <tr>
+          <td><%= work.id %></td>
+          <td><%= link_to work.title, work_path(work.id) %></td>
+          <td><%= work.creator %></td>
+          <td><%= work.publication.year %></td>
+          <td><%= link_to "Upvote", work_path(work.id), class: "btn btn-primary", method: "post" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+<section class="media-table">
+  <h4>Books</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th width=80>Votes</th>
+        <th>Title</th>
+        <th>Created By</th>
+        <th width=100>Published</th>
+        <th width=100>Upvote</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @works_books.each do |work|  %>
+        <tr>
+          <td><%= work.id %></td>
+          <td><%= link_to work.title, work_path(work.id) %></td>
+          <td><%= work.creator %></td>
+          <td><%= work.publication.year %></td>
+          <td><%= link_to "Upvote", work_path(work.id), class: "btn btn-primary", method: "post" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+<section class="media-table">
+  <h4>Movies</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th width=80>Votes</th>
+        <th>Title</th>
+        <th>Created By</th>
+        <th width=100>Published</th>
+        <th width=100>Upvote</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @works_movies.each do |work|  %>
+        <tr>
+          <td><%= work.id %></td>
+          <td><%= link_to work.title, work_path(work.id) %></td>
+          <td><%= work.creator %></td>
+          <td><%= work.publication.year %></td>
+          <td><%= link_to "Upvote", work_path(work.id), class: "btn btn-primary", method: "post" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<a class="btn btn-secondary" href="/">View top media</a>
+<a class="btn btn-primary" href="/works/new">Add a new work</a>

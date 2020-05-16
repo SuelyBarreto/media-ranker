@@ -11,8 +11,12 @@ class Work < ApplicationRecord
     return self.users.count
   end
 
+  def self.by_category(category)
+    return Work.all.select{ |work| work.category == category }
+  end
+
   def self.top(category, n)
-    return Work.all.select{ |work| work.category == category }.sample(n)
+    return Work.by_category(category).sample(n)
   end
 
   def self.spotlight

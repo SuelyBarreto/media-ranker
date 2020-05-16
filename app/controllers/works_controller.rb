@@ -1,6 +1,9 @@
 class WorksController < ApplicationController
   def index
-    @works = Work.all
+    @works_albums = Work.by_category("album")
+    @works_movies = Work.by_category("movie")
+    @works_books  = Work.by_category("book")
+    p @works_albums.first
   end
 
   def show
@@ -17,11 +20,11 @@ class WorksController < ApplicationController
     
   def create
     @work = Work.new(work_params)
-    @work.available = true
     if @work.save
       flash[:success] = "Work added successfully"
       redirect_to work_path(@work.id)
     else
+      flash.now[:failure] = "Work not added"
       render :new
     end
   end
@@ -40,8 +43,10 @@ class WorksController < ApplicationController
       head :not_found
       return
     elsif @work.update(work_params)
+      flash[:success] = "Work updated successfully"
       redirect_to work_path(@work.id)
     else
+      flash.now[:failure] = "Work not updated"
       render :edit
     end
   end
@@ -53,9 +58,9 @@ class WorksController < ApplicationController
       return
     end
     work.destroy
+    flash[:success] = "Work deleted successfully"
     redirect_to works_path
   end
-
 
   private
 
@@ -64,5 +69,4 @@ class WorksController < ApplicationController
       :category, :title, :creator, :publication, :description
     )
   end
-  
 end

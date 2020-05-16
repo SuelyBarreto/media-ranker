@@ -10,4 +10,9 @@ class Work < ApplicationRecord
   def votes
     return self.users.count
   end
+
+  def self.top(category, n)
+    return Work.all.select{ |work| work.category == category }.sample(n)
+  end
+
 end

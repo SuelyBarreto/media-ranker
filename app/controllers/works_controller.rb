@@ -3,7 +3,6 @@ class WorksController < ApplicationController
     @works_albums = Work.by_category("album")
     @works_movies = Work.by_category("movie")
     @works_books  = Work.by_category("book")
-    p @works_albums.first
   end
 
   def show
@@ -60,6 +59,17 @@ class WorksController < ApplicationController
     work.destroy
     flash[:success] = "Work deleted successfully"
     redirect_to works_path
+  end
+
+  def upvote(id)
+    work = Work.find_by(id: params[:id])
+    if work.nil?
+      head :not_found
+      return
+    end
+    # insert upvote code here!
+    flash[:success] = "Work upvoted successfully"
+    redirect_to work_path(@work.id)
   end
 
   private

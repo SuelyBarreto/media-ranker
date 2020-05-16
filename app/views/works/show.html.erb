@@ -1,2 +1,41 @@
-<h1>Works#show</h1>
-<p>Find me in app/views/works/show.html.erb</p>
+<section>
+  <h2><%= @work.title %></h2>
+  <p>Created by: <%= @work.creator %></p>
+  <p>Published: <%= @work.publication.year %></p>
+  <p><%= @work.description %></p>
+  <section>
+    <%= button_to "Back to media ranks", root_path,
+        method: "get", class: "btn btn-primary"
+    %>
+    <%= button_to "Edit", edit_work_path(@work),
+        method: "get", class: "btn btn-primary"
+    %>
+    <%= button_to "Upvote", upvote_work_path(@work),
+        method: "get", class: "btn btn-primary"
+    %>
+    <%= button_to "Delete", work_path(@work),
+        method: :delete, class: "btn btn-primary",
+        data: {confirm: "Are you sure?"}
+    %>
+  </section>
+</section>
+
+<section class="works-votes__container">
+  <h3 class="works-votes__header"><%= @work.votes %> Votes for this Album</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @work.users.each do |user|  %>
+        <tr>
+          <td><a href="/users/631">cojenco</a></td>
+          <td>May 16, 2020</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

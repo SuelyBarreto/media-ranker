@@ -2,7 +2,7 @@
     <h2 class="spotlight__header">
       <span class="spotlight__header--prefix">Media Spotlight</span>
       <%= @spotlight.title %>
-      <%# <%= link_to @spotlight.title, work_path(@spotlight.id), class:"spotlight__link-to"  %> 
+      <%= link_to @spotlight.title, work_path(@spotlight.id), class:"spotlight__link-to" %> 
       by <%= @spotlight.creator %>
     </h2>
     <p class="spotlight__description">
@@ -23,7 +23,7 @@
       <li class="list-group-item">
         <h4>
         <%= work.title %>
-        <%# <%= link_to work.title, work_path(work.id) %>
+        <%= link_to work.title, work_path(work.id) %>
         <small class="top-ten__creator"> by <%= work.creator %></small>
         </h4>
         <p><%= work.votes %> votes</p>
@@ -41,7 +41,7 @@
       <li class="list-group-item">
         <h4>
         <%= work.title %>
-        <%# <%= link_to work.title, work_path(work.id) %>
+        <%= link_to work.title, work_path(work.id) %>
         <small class="top-ten__creator"> by <%= work.creator %></small>
         </h4>
         <p><%= work.votes %> votes</p>
@@ -59,7 +59,7 @@
       <li class="list-group-item">
         <h4>
         <%= work.title %>
-        <%# <%= link_to work.title, work_path(work.id) %>
+        <%= link_to work.title, work_path(work.id) %>
         <small class="top-ten__creator"> by <%= work.creator %></small>
         </h4>
         <p><%= work.votes %> votes</p>

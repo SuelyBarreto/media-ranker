@@ -15,4 +15,7 @@ class Work < ApplicationRecord
     return Work.all.select{ |work| work.category == category }.sample(n)
   end
 
+  def self.spotlight
+    return Work.all.sample
+  end
 end

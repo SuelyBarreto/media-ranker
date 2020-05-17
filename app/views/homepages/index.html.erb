@@ -21,7 +21,6 @@
     <% @top_movies.each do |work|  %>
       <li class="list-group-item">
         <h4>
-        <%= work.title %>
         <%= link_to work.title, work_path(work.id) %>
         <small class="top-ten__creator"> by <%= work.creator %></small>
         </h4>
@@ -39,7 +38,6 @@
     <% @top_books.each do |work|  %>
       <li class="list-group-item">
         <h4>
-        <%= work.title %>
         <%= link_to work.title, work_path(work.id) %>
         <small class="top-ten__creator"> by <%= work.creator %></small>
         </h4>
@@ -57,7 +55,6 @@
     <% @top_albums.each do |work|  %>
       <li class="list-group-item">
         <h4>
-        <%= work.title %>
         <%= link_to work.title, work_path(work.id) %>
         <small class="top-ten__creator"> by <%= work.creator %></small>
         </h4>

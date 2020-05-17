@@ -38,15 +38,20 @@
       </ul>
       <ul class="nav app-header__user-nav-container">
 
-        <li class="nav-item app-header__nav_item">
+        <% current_user = User.find_by(id: session[:user_id]) %>
+        <% if current_user %>
+          <li class="nav-item app-header__nav_item">
         <%# Suely --- fix this after user is created %>
-          <a class="btn btn-primary" href="/users/664">Logged in as 1111111</a>
-        </li>
-        <li class="nav-item app-header__nav_item">
-        <%# Suely --- fix this after user is created %>
-          <a class="btn btn-primary" rel="nofollow" data-method="post" href="/logout">Log Out</a>
-        </li>
-
+            <a class="btn btn-primary" href="/users/664">Logged in as <%= current_user.name %></a>
+          </li>
+          <li class="nav-item app-header__nav_item">
+            <%= button_to "Logout", logout_path, method: "post", class: "btn btn-primary" %>
+          </li>
+        <% else %>
+          <li class="nav-item app-header__nav_item">
+            <%= button_to "Login", login_path, method: "get", class: "btn btn-primary" %>
+          </li>
+        <% end %>
       </ul>
     </nav>
   </header>

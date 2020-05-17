@@ -21,7 +21,7 @@
 </section>
 
 <section class="works-votes__container">
-  <h3 class="works-votes__header"><%= @work.votes %> Votes for this Album</h3>
+  <h3 class="works-votes__header"><%= @work.votes %> Votes for this <%= @work.category.capitalize %></h3>
   <table class="table">
     <thead>
       <tr>

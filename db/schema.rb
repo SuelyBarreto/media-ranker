@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_040606) do
     t.string "category"
     t.string "title"
     t.string "creator"
-    t.date "publication"
+    t.integer "publication"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

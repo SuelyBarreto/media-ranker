@@ -4,7 +4,7 @@ class CreateWorks < ActiveRecord::Migration[6.0]
       t.string :category
       t.string :title
       t.string :creator
-      t.date :publication
+      t.integer :publication
       t.text :description
 
       t.timestamps

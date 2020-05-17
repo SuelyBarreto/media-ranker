@@ -1,7 +1,7 @@
 <section>
   <h2><%= @work.title %></h2>
   <p>Created by: <%= @work.creator %></p>
-  <p>Published: <%= @work.publication.year %></p>
+  <p>Published: <%= @work.publication %></p>
   <p><%= @work.description %></p>
   <section>
     <%= button_to "Back to media ranks", root_path,

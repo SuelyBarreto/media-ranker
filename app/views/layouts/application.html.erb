@@ -23,24 +23,27 @@
     <nav class="app-header__nav">
       <ul class="nav app-header__site-nav-container">
         <li class="nav-item app-header__nav_item">
-          <a class="nav-link" href="/">View top media</a>
+          <%= link_to "View top media", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item app-header__nav_item">
-          <a class="nav-link" href="/works">View all media</a>
+          <%= link_to "View all media", works_path, class: "nav-link" %>
         </li>
         <li class="nav-item app-header__nav_item">
-          <a class="nav-link" href="/works/new">Add a new work</a>
+          <%= link_to "Add a new work", new_work_path, class: "nav-link" %>
         </li>
         <li class="nav-item app-header__nav_item">
+        <%# Suely --- fix this after user is created %>
           <a class="nav-link" href="/users">View all users</a>
         </li>
       </ul>
       <ul class="nav app-header__user-nav-container">
 
         <li class="nav-item app-header__nav_item">
+        <%# Suely --- fix this after user is created %>
           <a class="btn btn-primary" href="/users/664">Logged in as 1111111</a>
         </li>
         <li class="nav-item app-header__nav_item">
+        <%# Suely --- fix this after user is created %>
           <a class="btn btn-primary" rel="nofollow" data-method="post" href="/logout">Log Out</a>
         </li>
 

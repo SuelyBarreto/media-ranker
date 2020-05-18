@@ -61,15 +61,26 @@ class WorksController < ApplicationController
     redirect_to works_path
   end
 
-  def upvote(id)
+  def upvote
     work = Work.find_by(id: params[:id])
     if work.nil?
       head :not_found
       return
     end
-    # insert upvote code here!
-    flash[:success] = "Work upvoted successfully"
-    redirect_to work_path(@work.id)
+    user = User.find_by(id: session[:user_id])
+    if user.nil?
+      flash[:warning] = "You must log in to do that"
+      redirect_to work_path(work.id)
+      return
+    end
+    if work.voted?(user)
+      flash[:warning] = "Could not upvote. User: has already voted for this work"
+      redirect_to work_path(work.id)
+      return
+    end
+    work.upvote(user)
+    flash[:success] = "Successfully upvoted!"
+    redirect_to work_path(work.id)
   end
 
   private

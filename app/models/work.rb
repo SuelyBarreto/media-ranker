@@ -22,4 +22,13 @@ class Work < ApplicationRecord
   def self.spotlight
     return Work.all.sample
   end
+
+  def voted?(user)
+    return self.users.include?(user)
+  end
+
+  def upvote(user)
+    self.users.push(user)
+  end
+
 end

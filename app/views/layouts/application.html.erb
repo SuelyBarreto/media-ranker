@@ -16,10 +16,9 @@
 
   <header class="app-header__header">
     <h1>
-      <a href="/">Media Ranker</a>
+      <%= link_to "Media Ranker", root_path %>
       <small>Ranking the Best of Everything</small>
     </h1>
-
     <nav class="app-header__nav">
       <ul class="nav app-header__site-nav-container">
         <li class="nav-item app-header__nav_item">
@@ -32,17 +31,15 @@
           <%= link_to "Add a new work", new_work_path, class: "nav-link" %>
         </li>
         <li class="nav-item app-header__nav_item">
-        <%# Suely --- fix this after user is created %>
-          <a class="nav-link" href="/users">View all users</a>
+          <%= link_to "View all Users", users_path, class: "nav-link" %>
         </li>
       </ul>
       <ul class="nav app-header__user-nav-container">
 
-        <% current_user = User.find_by(id: session[:user_id]) %>
-        <% if current_user %>
+        <% user = User.find_by(id: session[:user_id]) %>
+        <% if user %>
           <li class="nav-item app-header__nav_item">
-        <%# Suely --- fix this after user is created %>
-            <a class="btn btn-primary" href="/users/664">Logged in as <%= current_user.name %></a>
+            <%= link_to "Logged in as " + user.name, user_path(user.id), class: "btn btn-primary" %>
           </li>
           <li class="nav-item app-header__nav_item">
             <%= button_to "Logout", logout_path, method: "post", class: "btn btn-primary" %>

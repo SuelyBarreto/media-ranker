@@ -14,7 +14,7 @@
         method: "get", class: "btn btn-primary"
     %>
     <%= button_to "Delete", work_path(@work),
-        method: :delete, class: "btn btn-primary",
+        method: :delete, class: "btn btn-danger",
         data: {confirm: "Are you sure?"}
     %>
   </section>
@@ -33,8 +33,8 @@
       <% @work.users.each do |user|  %>
         <tr>
         <%# Suely - fix user here later %>
-          <td><a href="/users/631">cojenco</a></td> 
-          <td>May 16, 2020</td>
+          <td><%= link_to user.name, user_path(user.id) %></td> 
+          <td><%= user.created_at %></td>
         </tr>
       <% end %>
     </tbody>

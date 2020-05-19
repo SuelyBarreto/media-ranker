@@ -12,15 +12,15 @@ class Work < ApplicationRecord
   end
 
   def self.by_category(category)
-    return Work.all.select{ |work| work.category == category }
+    return Work.order(title: :asc).where(category: category)
   end
 
   def self.top(category, n)
-    return Work.by_category(category).sample(n)
+    return Work.order(title: :asc).where(category: category).limit(n)
   end
 
   def self.spotlight
-    return Work.all.sample
+    return Work.order(title: :asc).first
   end
 
   def voted?(user)

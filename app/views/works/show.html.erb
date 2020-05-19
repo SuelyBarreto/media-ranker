@@ -30,11 +30,11 @@
       </tr>
     </thead>
     <tbody>
-      <% @work.users.each do |user|  %>
+      <% @work.users.each do |vote|  %>
+        <% user = User.find_by(id: vote.user_id) %>
         <tr>
-        <%# Suely - fix user here later %>
           <td><%= link_to user.name, user_path(user.id) %></td> 
-          <td><%= user.created_at %></td>
+          <td><%= vote.voted_on %></td>
         </tr>
       <% end %>
     </tbody>

@@ -7,10 +7,6 @@ class Work < ApplicationRecord
   }
   validates :title, presence: true
 
-  def votes
-    return self.users.count
-  end
-
   def self.by_category(category)
     return Work.order(title: :asc).where(category: category)
   end
@@ -23,12 +19,20 @@ class Work < ApplicationRecord
     return Work.order(title: :asc).first
   end
 
+  def votes
+    return Vote.work_votes(self)
+  end
+  
+  def users
+    return Vote.users(self)
+  end
+
   def voted?(user)
-    return self.users.include?(user)
+    return Vote.voted?(self, user)
   end
 
   def upvote(user)
-    self.users.push(user)
+    Vote.upvote(self, user)
   end
 
 end

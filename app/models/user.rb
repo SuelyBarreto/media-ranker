@@ -4,6 +4,19 @@ class User < ApplicationRecord
   validates :name, uniqueness: true, presence: true
 
   def votes
-    return self.works.count
+    return Vote.user_votes(self)
   end
+  
+  def works
+    return Vote.works(self)
+  end
+
+  def voted?(work)
+    return Vote.voted?(work, self)
+  end
+
+  def upvote(work)
+    Vote.upvote(work, self)
+  end
+
 end

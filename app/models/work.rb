@@ -1,5 +1,5 @@
 class Work < ApplicationRecord
-  has_and_belongs_to_many :users
+  has_many :votes
 
   validates :category, inclusion: {
     in: %w(album book movie),

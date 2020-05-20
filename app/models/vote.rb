@@ -1,6 +1,7 @@
 class Vote < ApplicationRecord
-  belongs_to :user
-  belongs_to :work
+
+  belongs_to :user, counter_cache: true
+  belongs_to :work, counter_cache: true
 
   def self.user_votes(user)
     return Vote.where(user_id: user.id).size

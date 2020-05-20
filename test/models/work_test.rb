@@ -2,13 +2,7 @@ require "test_helper"
 
 describe Work do
   let (:new_work) {
-    Work.new(
-      category: "book",
-      title: "The Alchemist",
-      creator: "Paulo Coelho" ,
-      publication: "1990-01-01",
-      description: "A great book"
-    )
+    works(:alchemist)
   }
 
   describe "basic tests" do
@@ -77,28 +71,27 @@ describe Work do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-
     describe "vote" do
       it "calculates the user votes for the work" do
         # Arrange
         new_work.save
 
         # Assert
-        expect(new_work.votes).must_equal 0
+        expect(new_work.votes.count).must_equal 0
 
         # Arrange
         new_user1 = User.create(name: "Pedro", joined: Date.today)
         new_work.users << new_user1
 
         # Assert
-        expect(new_work.votes).must_equal 1
+        expect(new_work.votes.count).must_equal 1
 
         # Arrange
         new_user2 = User.create(name: "Fabio", joined: Date.today)
         new_work.users << new_user2
 
         # Assert
-        expect(new_work.votes).must_equal 2
+        expect(new_work.votes.count).must_equal 2
       end
     end
   end

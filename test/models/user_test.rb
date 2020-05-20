@@ -9,13 +9,7 @@ describe User do
   }
 
   let (:new_work) {
-    Work.new(
-      category: "book",
-      title: "The Alchemist",
-      creator: "Paulo Coelho" ,
-      publication: "1990-01-01",
-      description: "A great book"
-    )
+    works(:alchemist)
   }
 
   describe "basic tests" do
@@ -78,7 +72,6 @@ describe User do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-
     describe "vote" do
       it "calculates the user votes by the user" do
         # Arrange

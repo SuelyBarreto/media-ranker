@@ -1,5 +1,6 @@
 class Work < ApplicationRecord
   has_many :votes
+  has_many :users, through: :votes
 
   validates :category, inclusion: {
     in: %w(album book movie),
@@ -8,25 +9,17 @@ class Work < ApplicationRecord
   validates :title, presence: true
 
   def self.by_category(category)
-    return Work.order(title: :asc).where(category: category)
+    return Work.where(category: category).order(title: :asc)
   end
 
   def self.top(category, n)
-    return Work.order(title: :asc).where(category: category).limit(n)
+    return Work.where(category: category).order(votes_count: :desc, title: :asc).limit(n)
   end
 
   def self.spotlight
-    return Work.order(title: :asc).first
-  end
-
-  def votes
-    return Vote.work_votes(self)
+    return Work.order(votes_count: :desc, title: :asc).first
   end
   
-  def users
-    return Vote.users(self)
-  end
-
   def voted?(user)
     return Vote.voted?(self, user)
   end

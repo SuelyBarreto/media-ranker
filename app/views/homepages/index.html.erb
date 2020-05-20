@@ -5,7 +5,7 @@
       by <%= @spotlight.creator %>
     </h2>
     <p class="spotlight__description">
-      <%= @spotlight.votes %> votes - <%= @spotlight.description %>
+      <%= @spotlight.votes.count %> votes - <%= @spotlight.description %>
     </p>
 
 </section>
@@ -24,7 +24,7 @@
         <%= link_to work.title, work_path(work.id) %>
         <small class="top-ten__creator"> by <%= work.creator %></small>
         </h4>
-        <p><%= work.votes %> votes</p>
+        <p><%= work.votes.count %> votes</p>
       </li>
     <% end %>
   </ul>
@@ -41,7 +41,7 @@
         <%= link_to work.title, work_path(work.id) %>
         <small class="top-ten__creator"> by <%= work.creator %></small>
         </h4>
-        <p><%= work.votes %> votes</p>
+        <p><%= work.votes.count %> votes</p>
       </li>
     <% end %>
   </ul>
@@ -58,7 +58,7 @@
         <%= link_to work.title, work_path(work.id) %>
         <small class="top-ten__creator"> by <%= work.creator %></small>
         </h4>
-        <p><%= work.votes %> votes</p>
+        <p><%= work.votes.count %> votes</p>
       </li>
     <% end %>
   </ul>

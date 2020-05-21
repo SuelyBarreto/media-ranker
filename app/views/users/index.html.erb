@@ -11,7 +11,7 @@
     <% @users.each do |user|  %>
       <tr>
         <td><%= link_to user.name, user_path(user.id) %></td>
-        <td><%= user.votes %></td>
+        <td><%= user.votes_count %></td>
         <td><%= user.joined %></td>
       </tr>
     <% end %>

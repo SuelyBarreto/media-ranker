@@ -5,6 +5,10 @@ describe Work do
     works(:alchemist)
   }
 
+  let (:new_user) {
+    users(:chris)
+  }
+  
   describe "basic tests" do
     it "can be instantiated" do
       # Assert
@@ -23,11 +27,16 @@ describe Work do
   end
 
   describe "relationships" do
-    it "can get votes from many users" do
+    it "can get votes for many users" do
       # Arrange
+      new_user.save
       new_work.save
-      new_user = User.create(name: "Pedro", joined: Date.today)
-      new_work.users << new_user
+      new_work.upvote(new_user)
+      # Assert
+      expect(new_work.votes.count).must_equal 1
+      new_work.votes.each do |vote|
+        expect(vote).must_be_instance_of Vote
+      end
       # Assert
       expect(new_work.users.count).must_equal 1
       new_work.users.each do |user|
@@ -59,40 +68,41 @@ describe Work do
 
     it "must have a valid category" do
       # Arrange
-      new_work.category = "soda"
+      new_work.category = "taco"
 
       # Assert
       expect(new_work.valid?).must_equal false
       expect(new_work.errors.messages).must_include :category
       expect(new_work.errors.messages[:category]).must_equal ["invalid category"]
     end
-
   end
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    describe "vote" do
-      it "calculates the user votes for the work" do
-        # Arrange
-        new_work.save
-
-        # Assert
-        expect(new_work.votes.count).must_equal 0
-
-        # Arrange
-        new_user1 = User.create(name: "Pedro", joined: Date.today)
-        new_work.users << new_user1
-
-        # Assert
-        expect(new_work.votes.count).must_equal 1
-
-        # Arrange
-        new_user2 = User.create(name: "Fabio", joined: Date.today)
-        new_work.users << new_user2
-
-        # Assert
-        expect(new_work.votes.count).must_equal 2
-      end
+    describe "self.by_category(category)" do
+      # return Work.where(category: category).order(title: :asc)
     end
+  
+    describe "self.top(category, n)" do
+      # return Work.where(category: category).order(votes_count: :desc, title: :asc).limit(n)
+    end
+  
+    describe "def self.spotlight" do
+      # return Work.order(votes_count: :desc, title: :asc).first
+    end
+    
+    describe "def voted?(user)" do
+      # return Vote.where(work_id: self.id, user_id: user.id).size > 0
+    end
+  
+    describe "def upvote(user)" do
+      # if voted?(user)
+      #   return false
+      # end
+      # Vote.create(work_id: self.id, user_id: user.id, voted_on: Date.today)
+      # return true
+    end
+  
+
   end
 end

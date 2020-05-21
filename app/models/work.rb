@@ -22,7 +22,7 @@ class Work < ApplicationRecord
   
   def voted?(user)
     return Vote.where(work_id: self.id, user_id: user.id).size > 0
-end
+  end
 
   def upvote(user)
     if voted?(user)

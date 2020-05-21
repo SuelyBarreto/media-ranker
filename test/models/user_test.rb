@@ -2,10 +2,7 @@ require "test_helper"
 
 describe User do
   let (:new_user) {
-    User.new(
-      name: "Paloma",
-      joined: Date.today
-    )
+    users(:chris)
   }
 
   let (:new_work) {
@@ -34,7 +31,12 @@ describe User do
       # Arrange
       new_user.save
       new_work.save
-      new_user.works << new_work
+      new_work.upvote(new_user)
+      # Assert
+      expect(new_user.votes.count).must_equal 1
+      new_user.votes.each do |vote|
+        expect(vote).must_be_instance_of Vote
+      end
       # Assert
       expect(new_user.works.count).must_equal 1
       new_user.works.each do |work|
@@ -58,7 +60,7 @@ describe User do
       # Arrange
       new_user.save
       conflicting_user = User.new(
-        name: "Paloma",
+        name: new_user.name,
         joined: Date.today
       )
   
@@ -66,27 +68,6 @@ describe User do
       expect(conflicting_user.valid?).must_equal false
       expect(conflicting_user.errors.messages).must_include :name
       expect(conflicting_user.errors.messages[:name]).must_equal ["has already been taken"]
-    end
-
-  end
-
-  # Tests for methods you create should go here
-  describe "custom methods" do
-    describe "vote" do
-      it "calculates the user votes by the user" do
-        # Arrange
-        new_user.save
-
-        # Assert
-        expect(new_user.votes).must_equal 0
-
-        # Arrange
-        new_work.save
-        new_user.works << new_work
-
-        # Assert
-        expect(new_user.votes).must_equal 1
-      end
     end
   end
 end

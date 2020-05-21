@@ -73,14 +73,15 @@ class WorksController < ApplicationController
       redirect_to work_path(work.id)
       return
     end
-    if work.voted?(user)
+    if work.upvote(user)
+      flash[:success] = "Successfully upvoted!"
+      redirect_to work_path(work.id)
+      return
+    else
       flash[:warning] = "Could not upvote. User: has already voted for this work"
       redirect_to work_path(work.id)
       return
     end
-    work.upvote(user)
-    flash[:success] = "Successfully upvoted!"
-    redirect_to work_path(work.id)
   end
 
   private

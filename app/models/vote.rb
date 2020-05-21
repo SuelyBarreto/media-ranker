@@ -3,12 +3,4 @@ class Vote < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :work, counter_cache: true
    
-  def self.voted?(work, user)
-    return Vote.where(work_id: work.id, user_id: user.id).size > 0
-  end
-
-  def self.upvote(work, user)
-    Vote.create(work_id: work.id, user_id: user.id, voted_on: Date.today)
-  end
-
 end

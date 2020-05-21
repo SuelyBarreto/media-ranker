@@ -21,11 +21,15 @@ class Work < ApplicationRecord
   end
   
   def voted?(user)
-    return Vote.voted?(self, user)
-  end
+    return Vote.where(work_id: self.id, user_id: user.id).size > 0
+end
 
   def upvote(user)
-    Vote.upvote(self, user)
+    if voted?(user)
+      return false
+    end
+    Vote.create(work_id: self.id, user_id: user.id, voted_on: Date.today)
+    return true
   end
 
 end

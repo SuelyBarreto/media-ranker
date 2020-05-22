@@ -23,7 +23,7 @@ class WorksController < ApplicationController
       flash[:success] = "Work added successfully"
       redirect_to work_path(@work.id)
     else
-      flash.now[:failure] = "Work not added"
+      flash.now[:warning] = "Work not added"
       render :new
     end
   end
@@ -45,7 +45,7 @@ class WorksController < ApplicationController
       flash[:success] = "Work updated successfully"
       redirect_to work_path(@work.id)
     else
-      flash.now[:failure] = "Work not updated"
+      flash.now[:warning] = "Work not updated"
       render :edit
     end
   end

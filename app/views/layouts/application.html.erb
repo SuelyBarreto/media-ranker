@@ -54,7 +54,7 @@
   </header>
   <section class="alert__container">
     <% flash.each do |name, message| %>
-      <div class="alert alert-<%= name %>">
+      <div class="<%= flash_class(name) %>">
          <span><%= message %></span>
       </div>
     <% end %>
@@ -63,4 +63,3 @@
     <%= yield %>
   </body>
 </html>
-

@@ -9,7 +9,7 @@ class Work < ApplicationRecord
   validates :title, presence: true
 
   def self.by_category(category)
-    return Work.where(category: category).order(title: :asc)
+    return Work.where(category: category).order(votes_count: :desc, title: :asc)
   end
 
   def self.top(category, n)

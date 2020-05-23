@@ -17,6 +17,12 @@ class UsersController < ApplicationController
 
   def login
     name = params[:user][:name]
+    if name.empty?
+      flash[:warning] = "User name cannot be empty"
+      redirect_to root_path
+      return
+    end
+    
     user = User.find_by(name: name)
     if user
       session[:user_id] = user.id

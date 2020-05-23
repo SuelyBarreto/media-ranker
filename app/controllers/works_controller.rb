@@ -1,4 +1,7 @@
 class WorksController < ApplicationController
+
+  before_action :find_work, only: [:show, :edit, :update]
+
   def index
     @works_albums = Work.by_category("album")
     @works_movies = Work.by_category("movie")
@@ -6,11 +9,6 @@ class WorksController < ApplicationController
   end
 
   def show
-    @work = Work.find_by(id: params[:id])
-    if @work.nil?
-      head :not_found
-      return
-    end
   end
   
   def new 
@@ -29,19 +27,10 @@ class WorksController < ApplicationController
   end
     
   def edit
-    @work = Work.find_by(id: params[:id])
-    if @work.nil?
-      head :not_found
-      return
-    end
   end
   
   def update
-    @work = Work.find_by(id: params[:id])
-    if @work.nil?
-      head :not_found
-      return
-    elsif @work.update(work_params)
+    if @work.update(work_params)
       flash[:success] = "Work updated successfully"
       redirect_to work_path(@work.id)
     else
@@ -91,4 +80,13 @@ class WorksController < ApplicationController
       :category, :title, :creator, :publication, :description
     )
   end
+
+  def find_work
+    @work = Work.find_by(id: params[:id])
+    if @work.nil?
+      head :not_found
+      return
+    end
+  end
+
 end

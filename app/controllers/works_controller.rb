@@ -22,6 +22,9 @@ class WorksController < ApplicationController
       redirect_to work_path(@work.id)
     else
       flash.now[:warning] = "Work not added"
+      @work.errors.each do |column, message|
+        flash.now[:warning] = column.to_s.capitalize + " " + message
+      end
       render :new
     end
   end
@@ -35,6 +38,9 @@ class WorksController < ApplicationController
       redirect_to work_path(@work.id)
     else
       flash.now[:warning] = "Work not updated"
+      @work.errors.each do |column, message|
+        flash.now[:warning] = column.to_s.capitalize + " " + message
+      end
       render :edit
     end
   end

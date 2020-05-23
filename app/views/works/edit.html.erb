@@ -1,13 +1,4 @@
 <h2>Edit work</h2>
 
-<% if @work.errors.any? %>
-  <ul class="errors">
-    <% @work.errors.each do |column, message| %>
-      <li>
-        <strong><%= column.capitalize %></strong> <%= message %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
 <%= render partial: "work_form", locals: { submit_label: "Edit Work" } %>
 

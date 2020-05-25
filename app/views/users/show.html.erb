@@ -16,17 +16,10 @@
     <tbody>
       <% @user.votes.each do |vote|  %>
         <tr>
-          <% if vote.work %>
-              <td><%= link_to vote.work.title, vote.work %></td>
-              <td><%= vote.work.creator %></td>
-              <td><%= vote.work.publication %></td>
-              <td><%= vote.work.category.capitalize %></td>
-          <% else %>
-              <td>Deleted Work</td>
-              <td>n/a</td>
-              <td>n/a</td>
-              <td>n/a</td>
-          <% end %>
+          <td><%= link_to vote.work.title, vote.work %></td>
+          <td><%= vote.work.creator %></td>
+          <td><%= vote.work.publication %></td>
+          <td><%= vote.work.category.capitalize %></td>
           <td><%= vote.voted_on %></td>
         </tr>
       <% end %>
